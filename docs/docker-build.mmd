@@ -8,7 +8,7 @@ flowchart TB
         direction TB
         APP["/app/app.jar"] --> RUN["java -jar app.jar<br/>port 9090"]
     end
-    JAR -- "COPY --from=build" --> APP
+    JAR -- "COPY --from=build" --> B2
     RUN --> CLIENT["GET /api/hello<br/>Hello, World!"]
 
     style POM fill:#FFFFCC,stroke:#333333,color:#000000
