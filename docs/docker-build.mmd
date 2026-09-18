@@ -1,0 +1,21 @@
+flowchart TB
+    subgraph B1["Stage 1 · build · maven:3.9-eclipse-temurin-17"]
+        direction TB
+        POM["COPY pom.xml<br/>mvn dependency:go-offline"] --> SRC["COPY src/<br/>mvn package -DskipTests"]
+        SRC --> JAR["target/hello-world-*.jar"]
+    end
+    subgraph B2["Stage 2 · runtime · eclipse-temurin:17-jre-alpine"]
+        direction TB
+        APP["/app/app.jar"] --> RUN["java -jar app.jar<br/>port 9090"]
+    end
+    JAR -- "COPY --from=build" --> APP
+    RUN --> CLIENT["GET /api/hello<br/>Hello, World!"]
+
+    style POM fill:#FFFFCC,stroke:#333333,color:#000000
+    style SRC fill:#FFFFCC,stroke:#333333,color:#000000
+    style JAR fill:#FFFFCC,stroke:#333333,color:#000000
+    style APP fill:#FFFFCC,stroke:#333333,color:#000000
+    style RUN fill:#FFFFCC,stroke:#333333,color:#000000
+    style CLIENT fill:#E8E8E8,stroke:#333333,color:#000000
+    style B1 fill:#FFFFFF,stroke:#333333,color:#000000
+    style B2 fill:#FFFFFF,stroke:#333333,color:#000000
