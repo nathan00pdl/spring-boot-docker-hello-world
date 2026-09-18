@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /*
  * Note:
  * 
- * The @SpringBootApplicatio annotation is equivalent to @SpringBootConfiguration, @EnableAutoConfiguration and @ComponentScan.
+ * The @SpringBootApplication annotation is equivalent to @SpringBootConfiguration, @EnableAutoConfiguration and @ComponentScan.
  */
 
 @SpringBootApplication
