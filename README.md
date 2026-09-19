@@ -27,7 +27,7 @@ The application listens on port **9090**, set in `src/main/resources/application
 
 ## The Dockerfile
 
-<p align="center"><a href="docs/docker-build.svg"><img src="docs/docker-build.svg" alt="Stage 1, on a Maven image, copies pom.xml and downloads the dependencies, then copies the sources and builds the jar. Stage 2, on a JRE-only image, receives just that jar and runs it on port 9090." width="317"></a></p>
+<p align="center"><a href="docs/docker-build.svg"><img src="docs/docker-build.svg" alt="Stage 1, on a Maven image, copies pom.xml and downloads the dependencies, then copies the sources and builds the jar. Stage 2, on a JRE-only image, receives just that jar and runs it on port 9090." width="354"></a></p>
 
 The image is built in **two stages**, and only the second one becomes the final image:
 
