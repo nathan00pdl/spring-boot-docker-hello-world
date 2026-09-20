@@ -27,7 +27,7 @@ The application listens on port **9090**, set in `src/main/resources/application
 
 ## The Dockerfile
 
-<p align="center"><a href="docs/docker-build.svg"><img src="docs/docker-build.svg" alt="Stage 1, on a Maven image, copies pom.xml and downloads the dependencies, then copies the sources and builds the jar. Stage 2, on a JRE-only image, receives just that jar and runs it on port 9090." width="292"></a></p>
+<p align="center"><a href="docs/docker-build.svg"><img src="docs/docker-build.svg" alt="Stage 1, on a Maven image, copies pom.xml and downloads the dependencies, then copies the sources and builds the jar. Stage 2, on a JRE-only image, receives just that jar and runs it on port 9090." width="354"></a></p>
 
 The image is built in **two stages**, and only the second one becomes the final image:
 
@@ -81,11 +81,16 @@ A single test class runs with `./mvnw test -Dtest=HelloWorldControllerTest`.
 
 ## Diagrams
 
-Click a diagram to open it at full size. The diagram is generated from the Mermaid source in `docs/`, so it stays editable text rather than a binary image:
+Click a diagram to open it at full size. The diagram is generated from the Mermaid source in `docs/`, so it stays editable text rather than binary images:
 
 ```bash
-npx @mermaid-js/mermaid-cli -i docs/docker-build.mmd -o docs/docker-build.svg -t default -b white -c docs/mermaid-config.json
+for d in docs/*.mmd; do
+  npx @mermaid-js/mermaid-cli -i "$d" -o "${d%.mmd}.svg" -t default -b white -c docs/mermaid-config.json
+  python3 docs/finish-svg.py "${d%.mmd}.svg"
+done
 ```
+
+`finish-svg.py` adds a margin around each diagram and gives the arrow labels an opaque background, so the SVG looks the same in any viewer.
 
 ## License
 
